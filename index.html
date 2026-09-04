@@ -1,24 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  
-  
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carl Haiden Mallorca | Worship & Liturgy</title>
- <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
 <header class="nav">
+  <a href="#home" class="logo">CARL HAIDEN<br>MALLORCA</a>
 
-  <a href="#home" class="logo">
-    CARL HAIDEN<br>MALLORCA
-  </a>
-
-  <nav>
+  <nav id="mainNav">
     <a href="#home" class="active">Home</a>
     <a href="#why">Why Me?</a>
     <a href="#platforms">Platforms</a>
@@ -26,24 +20,15 @@
     <a href="#promise">My Promise</a>
   </nav>
 
-  <button class="menu-btn">☰</button>
-
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
 </header>
-
 
 <main>
 
-  <!-- =========================
-       HOME
-       ========================= -->
-
-  <section class="hero page-active" id="home">
-
-    <div class="hero-text reveal">
-
-      <p class="eyebrow">
-        TRC DYMC • WORSHIP & LITURGY
-      </p>
+  <!-- HOME -->
+  <section class="page hero page-active" id="home">
+    <div class="hero-text reveal visible">
+      <p class="eyebrow">TRC DYMC • WORSHIP & LITURGY</p>
 
       <h1>
         Faith in Action.<br>
@@ -56,76 +41,45 @@
       </p>
 
       <div class="hero-buttons">
-
-        <button
-          onclick="showPage('#platforms')"
-          class="btn primary"
-        >
+        <button class="btn primary" onclick="showPage('#platforms')">
           Explore My Platforms
         </button>
 
-        <button
-          onclick="showPage('#promise')"
-          class="btn secondary"
-        >
+        <button class="btn secondary" onclick="showPage('#promise')">
           My Promise
         </button>
-
       </div>
 
-
-      <!-- CAMPAIGN SONG -->
-
       <div class="music-player">
-
         <button id="musicBtn" class="music-btn">
           ▶ Play Campaign Song
         </button>
-
-        <span id="musicStatus">
-          Music for the journey
-        </span>
-
+        <span id="musicStatus">Music for the journey</span>
       </div>
-
     </div>
 
-
-    <div class="hero-card reveal delay">
-
+    <div class="hero-card reveal visible delay">
       <div class="portrait-placeholder">
-
         <img
-          src="63a59a15-f3a9-4564-b249-6f8b0be59d75.png"
+          src="./63a59a15-f3a9-4564-b249-6f8b0be59d75.png"
           alt="Carl Haiden Mallorca campaign photo"
         >
-
       </div>
 
       <div class="card-label">
         RUNNING FOR<br>
         <strong>WORSHIP & LITURGY</strong>
       </div>
-
     </div>
-
   </section>
 
 
-
-  <!-- =========================
-       WHY ME
-       ========================= -->
-
-  <section class="section dark-section" id="why">
-
+  <!-- WHY ME -->
+  <section class="page section dark-section" id="why">
     <div class="story-grid">
 
       <div class="reveal">
-
-        <p class="eyebrow">
-          WHY I AM RUNNING
-        </p>
+        <p class="eyebrow">WHY I AM RUNNING</p>
 
         <h2>
           Hindi man nagkatuluyan,<br>
@@ -137,12 +91,9 @@
           It is about being willing to give your time,
           effort, and heart to others.”
         </p>
-
       </div>
 
-
       <div class="body-copy reveal">
-
         <p>
           I want to run for a position in TRC DYMC because I sincerely
           want to continue serving my fellow youths. Through my
@@ -166,29 +117,17 @@
           not for recognition, but because I genuinely want to be of service.
         </p>
 
-        <div class="signature">
-          — Carl Haiden Mallorca
-        </div>
-
+        <div class="signature">— Carl Haiden Mallorca</div>
       </div>
 
     </div>
-
   </section>
 
 
-
-  <!-- =========================
-       PLATFORMS
-       ========================= -->
-
-  <section class="section" id="platforms">
-
+  <!-- PLATFORMS -->
+  <section class="page section" id="platforms">
     <div class="section-heading reveal">
-
-      <p class="eyebrow">
-        MY PLATFORMS
-      </p>
+      <p class="eyebrow">MY PLATFORMS</p>
 
       <h2>
         Faith that becomes<br>
@@ -199,24 +138,14 @@
         These are the areas I hope to contribute to
         if given the opportunity to serve.
       </p>
-
     </div>
-
 
     <div class="platform-grid">
 
-      <article
-        class="platform reveal"
-        data-platform="wellbeing"
-      >
+      <article class="platform reveal" data-platform="wellbeing">
+        <span class="platform-number">PLATFORM 01</span>
 
-        <span class="platform-number">
-          PLATFORM 01
-        </span>
-
-        <h3>
-          Youth Mental & Spiritual Well-Being
-        </h3>
+        <h3>Youth Mental & Spiritual Well-Being</h3>
 
         <p>
           Creating a safe, welcoming, and prayerful
@@ -224,54 +153,31 @@
           reflect, and grow.
         </p>
 
-        <span class="read-more">
-          Click to learn more →
-        </span>
-
+        <span class="read-more">Click to learn more →</span>
       </article>
 
+      <article class="platform reveal" data-platform="worship">
+        <span class="platform-number">PLATFORM 02</span>
 
-      <article
-        class="platform reveal"
-        data-platform="worship"
-      >
-
-        <span class="platform-number">
-          PLATFORM 02
-        </span>
-
-        <h3>
-          Meaningful Worship & Liturgy
-        </h3>
+        <h3>Meaningful Worship & Liturgy</h3>
 
         <p>
           Helping young people understand and actively
           participate in worship and liturgical celebrations.
         </p>
 
-        <span class="read-more">
-          Click to learn more →
-        </span>
-
+        <span class="read-more">Click to learn more →</span>
       </article>
 
     </div>
-
   </section>
 
 
-
-  <!-- =========================
-       MY JOURNEY
-       ========================= -->
-
-  <section class="section journey-section" id="journey">
+  <!-- JOURNEY -->
+  <section class="page section journey-section" id="journey">
 
     <div class="section-heading reveal">
-
-      <p class="eyebrow">
-        MY JOURNEY
-      </p>
+      <p class="eyebrow">MY JOURNEY</p>
 
       <h2>
         Growing through<br>
@@ -282,420 +188,153 @@
         Every experience, ministry, and community has helped shape
         how I understand faith and service.
       </p>
-
     </div>
-
-
-    <!-- JOURNEY TIMELINE -->
 
     <div class="timeline">
 
       <div class="timeline-item reveal">
-
         <span>01</span>
-
         <div>
-
-          <h3>
-            Learning
-          </h3>
-
+          <h3>Learning</h3>
           <p>
             Every experience has taught me something about
             faith, responsibility, and serving others.
           </p>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item reveal">
-
         <span>02</span>
-
         <div>
-
-          <h3>
-            Serving
-          </h3>
-
+          <h3>Serving</h3>
           <p>
             Through church and youth activities, I have learned
             that even small contributions can make a difference.
           </p>
-
         </div>
-
       </div>
 
-
       <div class="timeline-item reveal">
-
         <span>03</span>
-
         <div>
-
-          <h3>
-            Continuing
-          </h3>
-
+          <h3>Continuing</h3>
           <p>
             I want to continue learning, serving, and growing
             together with the youth community.
           </p>
-
         </div>
-
       </div>
 
     </div>
-
-
-
-    <!-- JOURNEY PHOTOS -->
-    <!-- SAME 12 IMAGES — ONLY REMOVED "images/" -->
 
     <div class="journey-gallery">
 
       <figure class="journey-photo reveal">
-
-        <img
-          src="5232cc4c-a90e-4ffc-9ed1-4c3ebf700520.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Faith & Service
-        </figcaption>
-
+        <img src="./5232cc4c-a90e-4ffc-9ed1-4c3ebf700520.jpg" alt="">
+        <figcaption>Faith & Service</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="61b21c58-a11f-4486-b92d-a686c4350037.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Youth Involvement
-        </figcaption>
-
+        <img src="./61b21c58-a11f-4486-b92d-a686c4350037.jpg" alt="">
+        <figcaption>Youth Involvement</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="69fdf4f9-55a1-4d8e-aa23-a40cd1e90077.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Serving Together
-        </figcaption>
-
+        <img src="./69fdf4f9-55a1-4d8e-aa23-a40cd1e90077.jpg" alt="">
+        <figcaption>Serving Together</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="7b43a92d-ac96-4e49-b1ce-66036b096489.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Community
-        </figcaption>
-
+        <img src="./7b43a92d-ac96-4e49-b1ce-66036b096489.jpg" alt="">
+        <figcaption>Community</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="d64512bc-4760-4e92-b831-295aac2ab474.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Care & Service
-        </figcaption>
-
+        <img src="./d64512bc-4760-4e92-b831-295aac2ab474.jpg" alt="">
+        <figcaption>Care & Service</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="6261411e-0d5b-49b2-b738-cfc74ffa282c.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Moments Along the Way
-        </figcaption>
-
+        <img src="./6261411e-0d5b-49b2-b738-cfc74ffa282c.jpg" alt="">
+        <figcaption>Moments Along the Way</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="642ca568-3004-42f5-a61e-2ce46f7d3909.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Teamwork
-        </figcaption>
-
+        <img src="./642ca568-3004-42f5-a61e-2ce46f7d3909.jpg" alt="">
+        <figcaption>Teamwork</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="1d4bade7-4884-4437-9acb-696898f15905.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          With Others
-        </figcaption>
-
+        <img src="./1d4bade7-4884-4437-9acb-696898f15905.jpg" alt="">
+        <figcaption>With Others</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="904e0157-bb7b-4302-9596-e38dd7e47d17.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Growing Together
-        </figcaption>
-
+        <img src="./904e0157-bb7b-4302-9596-e38dd7e47d17.jpg" alt="">
+        <figcaption>Growing Together</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="732dcc68-2dfa-4da8-89a4-a98146a21703.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Worship
-        </figcaption>
-
+        <img src="./732dcc68-2dfa-4da8-89a4-a98146a21703.jpg" alt="">
+        <figcaption>Worship</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="63945bdb-6cce-4856-8d72-c73f31bf692b.jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Life & Service
-        </figcaption>
-
+        <img src="./63945bdb-6cce-4856-8d72-c73f31bf692b.jpg" alt="">
+        <figcaption>Life & Service</figcaption>
       </figure>
 
-
       <figure class="journey-photo reveal">
-
-        <img
-          src="2b94eb2b-a3e8-4dd9-9d69-4c0447d14c1d (1).jpg"
-          alt="Carl Haiden journey photo"
-        >
-
-        <figcaption>
-          Faith in Action
-        </figcaption>
-
+        <img src="./2b94eb2b-a3e8-4dd9-9d69-4c0447d14c1d%20(1).jpg" alt="">
+        <figcaption>Faith in Action</figcaption>
       </figure>
 
     </div>
-
-
-
-    <!-- CREDENTIALS -->
 
     <div class="credentials reveal">
 
       <div>
-
-        <p class="eyebrow">
-          ACADEMIC AWARDS
-        </p>
+        <p class="eyebrow">ACADEMIC AWARDS</p>
 
         <ul>
-
-          <li>
-            Consistent Honor Student — JHS (Grade 7–10)
-          </li>
-
-          <li>
-            Bible Quiz Bee — 3rd Placer
-          </li>
-
-          <li>
-            Campus Journalism — Feature Writing, 7th Placer
-          </li>
-
-          <li>
-            Science Olympian Award
-          </li>
-
-          <li>
-            Math Wizard Award
-          </li>
-
-          <li>
-            Science Upcycling Champion
-          </li>
-
-          <li>
-            Language and Literary Warrior Award
-          </li>
-
+          <li>Consistent Honor Student — JHS (Grade 7–10)</li>
+          <li>Bible Quiz Bee — 3rd Placer</li>
+          <li>Campus Journalism — Feature Writing, 7th Placer</li>
+          <li>Science Olympian Award</li>
+          <li>Math Wizard Award</li>
+          <li>Science Upcycling Champion</li>
+          <li>Language and Literary Warrior Award</li>
         </ul>
-
       </div>
-
 
       <div>
-
-        <p class="eyebrow">
-          INVOLVEMENT
-        </p>
+        <p class="eyebrow">INVOLVEMENT</p>
 
         <ul>
-
-          <li>
-            Altar Server — also served as an officer
-          </li>
-
-          <li>
-            Parish Youth Ministry — Member
-          </li>
-
-          <li>
-            Parish Choir — Member
-          </li>
-
-          <li>
-            SOCCom — Member
-          </li>
-
-          <li>
-            Children of Mary Immaculate — Ministry member
-          </li>
-
-          <li>
-            The Young Ones Bataan — Youth Organization
-          </li>
-
-          <li>
-            Diocesan Youth Ministry — Parish Representative
-          </li>
-
-          <li>
-            Diocesan Youth Camp 2026 — Participant
-          </li>
-
-          <li>
-            Community Volunteer — Gift Giving & Relief Operations
-          </li>
-
-          <li>
-            Project Kalinga sa Kalsada — Volunteer
-          </li>
-
-          <li>
-            Church Representative — Local Health Board Meetings
-          </li>
-
-          <li>
-            Political & Calamity Symposiums — Participant
-          </li>
-
+          <li>Altar Server — also served as an officer</li>
+          <li>Parish Youth Ministry — Member</li>
+          <li>Parish Choir — Member</li>
+          <li>SOCCom — Member</li>
+          <li>Children of Mary Immaculate — Ministry member</li>
+          <li>The Young Ones Bataan — Youth Organization</li>
+          <li>Diocesan Youth Ministry — Parish Representative</li>
+          <li>Diocesan Youth Camp 2026 — Participant</li>
+          <li>Community Volunteer — Gift Giving & Relief Operations</li>
+          <li>Project Kalinga sa Kalsada — Volunteer</li>
+          <li>Church Representative — Local Health Board Meetings</li>
+          <li>Political & Calamity Symposiums — Participant</li>
         </ul>
-
       </div>
 
     </div>
-
   </section>
 
 
-
-  <!-- =========================
-       BEYOND THE CAMPAIGN
-       ========================= -->
-
-  <section class="section soft-section">
-
-    <div class="two-column">
-
-      <div class="reveal">
-
-        <p class="eyebrow">
-          BEYOND THE CAMPAIGN
-        </p>
-
-        <h2>
-          Showing up<br>
-          <span>matters.</span>
-        </h2>
-
-      </div>
-
-
-      <div class="reveal">
-
-        <p>
-          I believe that being part of a community means
-          being willing to help even when there is no event
-          or program happening.
-        </p>
-
-        <p>
-          Whether it is checking on a fellow member,
-          helping with preparations, listening to someone,
-          or simply being present, service can be found
-          in everyday moments.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =========================
-       PROMISE
-       ========================= -->
-
-  <section class="promise" id="promise">
+  <!-- PROMISE -->
+  <section class="page promise" id="promise">
 
     <div class="promise-box reveal">
-
-      <p class="eyebrow">
-        MY PROMISE
-      </p>
+      <p class="eyebrow">MY PROMISE</p>
 
       <h2>
         Faith in Action.<br>
@@ -708,18 +347,12 @@
         to listen, learn, and serve alongside you.
       </p>
 
-      <strong>
-        CARL HAIDEN MALLORCA
-      </strong>
-
-      <span class="promise-signature">
-        Worship & Liturgy
-      </span>
+      <strong>CARL HAIDEN MALLORCA</strong>
+      <span class="promise-signature">Worship & Liturgy</span>
 
       <button id="surpriseBtn" class="btn primary">
         One More Thing
       </button>
-
     </div>
 
   </section>
@@ -727,109 +360,58 @@
 </main>
 
 
-
-<!-- =========================
-     PLATFORM MODAL
-     ========================= -->
-
-<div
-  class="modal"
-  id="platformModal"
-  aria-hidden="true"
->
-
+<!-- PLATFORM MODAL -->
+<div class="modal" id="platformModal" aria-hidden="true">
   <div class="modal-content">
 
-    <button
-      id="closeModal"
-      class="close-modal"
-    >
-      ×
-    </button>
+    <button id="closeModal" class="close-modal">×</button>
 
-    <p
-      class="eyebrow"
-      id="modalEyebrow"
-    ></p>
-
+    <p class="eyebrow" id="modalEyebrow"></p>
     <h2 id="modalTitle"></h2>
-
     <p id="modalText"></p>
 
     <div id="modalList"></div>
 
   </div>
-
 </div>
 
 
-
 <!-- TOAST -->
-
 <div id="toast" class="toast">
   Thank you for taking the time to know the campaign. 💚
 </div>
 
 
-
-<!-- FLOATING SONG BUTTON -->
-
+<!-- MUSIC -->
 <div class="floating-music">
-
   <button id="floatingMusicBtn">
-
-    🎵
-    <span id="floatingMusicText">
-      Play Song
-    </span>
-
+    🎵 <span id="floatingMusicText">Play Song</span>
   </button>
-
 </div>
-
-
-
-<!-- HIDDEN YOUTUBE PLAYER -->
 
 <iframe
   id="musicFrame"
   src="https://www.youtube.com/embed/-hFkFhm1c64?enablejsapi=1"
   title="Campaign Song Player"
-  frameborder="0"
-  allow="autoplay; encrypted-media">
-</iframe>
-
+  allow="autoplay; encrypted-media"
+  style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;"
+></iframe>
 
 
 <footer>
-
   <div>
-
-    <strong>
-      CARL HAIDEN MALLORCA
-    </strong>
-
-    <p>
-      TRC DYMC • Worship & Liturgy
-    </p>
-
+    <strong>CARL HAIDEN MALLORCA</strong>
+    <p>TRC DYMC • Worship & Liturgy</p>
   </div>
-
 
   <div class="footer-right">
-
     Faith in Action.<br>
-
-    <strong>
-      Worship with Purpose.
-    </strong>
-
+    <strong>Worship with Purpose.</strong>
   </div>
-
 </footer>
 
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
 
 </body>
 </html>
