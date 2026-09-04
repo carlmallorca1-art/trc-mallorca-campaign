@@ -10,12 +10,13 @@
 <body>
 
 <header class="nav">
+
   <a href="#home" class="logo">
     CARL HAIDEN<br>MALLORCA
   </a>
 
   <nav>
-    <a href="#home">Home</a>
+    <a href="#home" class="active">Home</a>
     <a href="#why">Why Me?</a>
     <a href="#platforms">Platforms</a>
     <a href="#journey">My Journey</a>
@@ -23,13 +24,17 @@
   </nav>
 
   <button class="menu-btn">☰</button>
+
 </header>
 
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
+  <!-- =========================
+       HOME
+       ========================= -->
+
+  <section class="hero page-active" id="home">
 
     <div class="hero-text reveal">
 
@@ -49,18 +54,25 @@
 
       <div class="hero-buttons">
 
-        <a href="#platforms" class="btn primary">
+        <button
+          onclick="showPage('#platforms')"
+          class="btn primary"
+        >
           Explore My Platforms
-        </a>
+        </button>
 
-        <a href="#promise" class="btn secondary">
+        <button
+          onclick="showPage('#promise')"
+          class="btn secondary"
+        >
           My Promise
-        </a>
+        </button>
 
       </div>
 
 
-      <!-- KEEP PLAY SONG HERE -->
+      <!-- CAMPAIGN SONG -->
+
       <div class="music-player">
 
         <button id="musicBtn" class="music-btn">
@@ -98,7 +110,10 @@
 
 
 
-  <!-- WHY ME -->
+  <!-- =========================
+       WHY ME
+       ========================= -->
+
   <section class="section dark-section" id="why">
 
     <div class="story-grid">
@@ -160,7 +175,10 @@
 
 
 
-  <!-- PLATFORMS -->
+  <!-- =========================
+       PLATFORMS
+       ========================= -->
+
   <section class="section" id="platforms">
 
     <div class="section-heading reveal">
@@ -240,7 +258,10 @@
 
 
 
-  <!-- MY JOURNEY -->
+  <!-- =========================
+       MY JOURNEY
+       ========================= -->
+
   <section class="section journey-section" id="journey">
 
     <div class="section-heading reveal">
@@ -330,12 +351,14 @@
 
 
     <!-- JOURNEY PHOTOS -->
+    <!-- SAME 12 IMAGES — ONLY REMOVED "images/" -->
+
     <div class="journey-gallery">
 
       <figure class="journey-photo reveal">
 
         <img
-          src="images/5232cc4c-a90e-4ffc-9ed1-4c3ebf700520.jpg"
+          src="5232cc4c-a90e-4ffc-9ed1-4c3ebf700520.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -349,7 +372,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/61b21c58-a11f-4486-b92d-a686c4350037.jpg"
+          src="61b21c58-a11f-4486-b92d-a686c4350037.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -363,7 +386,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/69fdf4f9-55a1-4d8e-aa23-a40cd1e90077.jpg"
+          src="69fdf4f9-55a1-4d8e-aa23-a40cd1e90077.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -377,7 +400,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/7b43a92d-ac96-4e49-b1ce-66036b096489.jpg"
+          src="7b43a92d-ac96-4e49-b1ce-66036b096489.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -391,7 +414,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/d64512bc-4760-4e92-b831-295aac2ab474.jpg"
+          src="d64512bc-4760-4e92-b831-295aac2ab474.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -405,7 +428,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/6261411e-0d5b-49b2-b738-cfc74ffa282c.jpg"
+          src="6261411e-0d5b-49b2-b738-cfc74ffa282c.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -419,7 +442,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/642ca568-3004-42f5-a61e-2ce46f7d3909.jpg"
+          src="642ca568-3004-42f5-a61e-2ce46f7d3909.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -433,7 +456,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/1d4bade7-4884-4437-9acb-696898f15905.jpg"
+          src="1d4bade7-4884-4437-9acb-696898f15905.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -447,7 +470,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/904e0157-bb7b-4302-9596-e38dd7e47d17.jpg"
+          src="904e0157-bb7b-4302-9596-e38dd7e47d17.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -461,7 +484,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/732dcc68-2dfa-4da8-89a4-a98146a21703.jpg"
+          src="732dcc68-2dfa-4da8-89a4-a98146a21703.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -475,7 +498,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/63945bdb-6cce-4856-8d72-c73f31bf692b.jpg"
+          src="63945bdb-6cce-4856-8d72-c73f31bf692b.jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -489,7 +512,7 @@
       <figure class="journey-photo reveal">
 
         <img
-          src="images/2b94eb2b-a3e8-4dd9-9d69-4c0447d14c1d (1).jpg"
+          src="2b94eb2b-a3e8-4dd9-9d69-4c0447d14c1d (1).jpg"
           alt="Carl Haiden journey photo"
         >
 
@@ -504,6 +527,7 @@
 
 
     <!-- CREDENTIALS -->
+
     <div class="credentials reveal">
 
       <div>
@@ -613,7 +637,10 @@
 
 
 
-  <!-- BEYOND THE CAMPAIGN -->
+  <!-- =========================
+       BEYOND THE CAMPAIGN
+       ========================= -->
+
   <section class="section soft-section">
 
     <div class="two-column">
@@ -655,7 +682,10 @@
 
 
 
-  <!-- PROMISE -->
+  <!-- =========================
+       PROMISE
+       ========================= -->
+
   <section class="promise" id="promise">
 
     <div class="promise-box reveal">
@@ -695,7 +725,9 @@
 
 
 
-<!-- PLATFORM MODAL -->
+<!-- =========================
+     PLATFORM MODAL
+     ========================= -->
 
 <div
   class="modal"
@@ -758,7 +790,7 @@
 
 <iframe
   id="musicFrame"
-  src="https://www.youtube.com/embed/-oK7SheOEA0?enablejsapi=1"
+  src="https://www.youtube.com/embed/-hFkFhm1c64?enablejsapi=1"
   title="Campaign Song Player"
   frameborder="0"
   allow="autoplay; encrypted-media">
