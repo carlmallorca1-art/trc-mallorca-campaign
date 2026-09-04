@@ -1,511 +1,422 @@
-// ===============================
-// SCROLL REVEAL
-// ===============================
+let showPage;
 
-const revealItems = document.querySelectorAll(".reveal");
+document.addEventListener("DOMContentLoaded", () => {
 
-if ("IntersectionObserver" in window) {
+  const sections = document.querySelectorAll("main > section");
+  const navLinks = document.querySelectorAll(".nav nav a");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
+  /* =========================
+     PAGE NAVIGATION
+     ========================= */
 
-      entries.forEach((entry) => {
+  showPage = function(targetId) {
 
-        if (entry.isIntersecting) {
+    sections.forEach(section => {
+      section.classList.remove("page-active");
+    });
 
-          entry.target.classList.add(
-            "visible",
-            "active"
-          );
+    const target = document.querySelector(targetId);
 
-          observer.unobserve(entry.target);
-        }
-
-      });
-
-    },
-    {
-      threshold: 0.12
+    if (target) {
+      target.classList.add("page-active");
     }
-  );
 
-  revealItems.forEach((element) => {
-    observer.observe(element);
-  });
+    navLinks.forEach(link => {
+      link.classList.remove("active");
 
-} else {
+      if (link.getAttribute("href") === targetId) {
+        link.classList.add("active");
+      }
+    });
 
-  revealItems.forEach((element) => {
-    element.classList.add("visible", "active");
-  });
+    window.scrollTo({
+      top: 0,
+      behavior: "auto"
+    });
 
-}
+    // Re-trigger reveal animations
+    setTimeout(() => {
 
+      const activeSection = document.querySelector(targetId);
 
+      if (activeSection) {
 
-// ===============================
-// PLATFORM MODAL
-// ===============================
+        activeSection
+          .querySelectorAll(".reveal")
+          .forEach(element => {
+            element.classList.add("visible");
+          });
 
-const modal =
-  document.getElementById("platformModal");
-
-const closeModal =
-  document.getElementById("closeModal");
-
-const modalTitle =
-  document.getElementById("modalTitle");
-
-const modalEyebrow =
-  document.getElementById("modalEyebrow");
-
-const modalText =
-  document.getElementById("modalText");
-
-const modalList =
-  document.getElementById("modalList");
-
-
-const platformData = {
-
-  wellbeing: {
-
-    eyebrow: "PLATFORM 01",
-
-    title:
-      "Youth Mental & Spiritual Well-Being",
-
-    text:
-      "I want to create a safe, welcoming, and prayerful space where the youth can freely express their struggles, worries, and experiences without fear of being judged.",
-
-    list: [
-
-      "Taizé Prayer — a peaceful time of prayer, silence, reflection, and songs.",
-
-      "Krisma — a space for sharing, reflection, and strengthening our faith.",
-
-      "Small faith-sharing and reflection sessions.",
-
-      "Listening and prayer circles."
-
-    ]
-
-  },
-
-
-  worship: {
-
-    eyebrow: "PLATFORM 02",
-
-    title:
-      "Meaningful Worship & Liturgy",
-
-    text:
-      "I want to help make our worship more meaningful, understandable, and engaging for the youth. It should be something we understand, participate in, and carry into daily life.",
-
-    list: [
-
-      "Help the youth understand the meaning behind liturgical celebrations.",
-
-      "Provide moments for reflection before or after worship.",
-
-      "Give more opportunities for the youth to serve.",
-
-      "Make celebrations more welcoming and meaningful."
-
-    ]
-
-  }
-
-};
-
-
-
-document
-  .querySelectorAll(".platform")
-  .forEach((card) => {
-
-    card.addEventListener("click", () => {
-
-      const data =
-        platformData[
-          card.dataset.platform
-        ];
-
-      if (!data || !modal) {
-        return;
       }
 
+    }, 50);
 
-      modalEyebrow.textContent =
-        data.eyebrow;
-
-      modalTitle.textContent =
-        data.title;
-
-      modalText.textContent =
-        data.text;
+  };
 
 
-      modalList.innerHTML =
-        "<ul>" +
-        data.list
-          .map(
-            (item) =>
-              `<li>${item}</li>`
-          )
-          .join("") +
-        "</ul>";
+  /* =========================
+     NAVIGATION CLICK
+     ========================= */
 
+  navLinks.forEach(link => {
 
-      modal.classList.add("open");
+    link.addEventListener("click", event => {
 
-      modal.setAttribute(
-        "aria-hidden",
-        "false"
-      );
+      event.preventDefault();
+
+      const targetId = link.getAttribute("href");
+
+      showPage(targetId);
+
+      const nav = document.querySelector(".nav nav");
+
+      if (nav) {
+        nav.classList.remove("open");
+      }
 
     });
 
   });
 
 
+  /* =========================
+     INITIAL PAGE
+     ========================= */
 
-function closeTheModal() {
+  showPage("#home");
 
-  if (!modal) {
-    return;
+
+  /* =========================
+     REVEAL ANIMATION
+     ========================= */
+
+  const revealElements = document.querySelectorAll(".reveal");
+
+  const observer = new IntersectionObserver(
+    entries => {
+
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.1
+    }
+  );
+
+  revealElements.forEach(element => {
+    observer.observe(element);
+  });
+
+
+  /* =========================
+     PLATFORM MODAL
+     ========================= */
+
+  const platforms = document.querySelectorAll(".platform");
+
+  const modal = document.getElementById("platformModal");
+  const closeModal = document.getElementById("closeModal");
+
+  const modalEyebrow = document.getElementById("modalEyebrow");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalText = document.getElementById("modalText");
+  const modalList = document.getElementById("modalList");
+
+
+  const platformData = {
+
+    wellbeing: {
+
+      eyebrow: "PLATFORM 01",
+
+      title: "Youth Mental & Spiritual Well-Being",
+
+      text:
+        "I want to help create a youth ministry environment where young people feel welcomed, heard, and supported.",
+
+      list: [
+        "Prayer and reflection activities",
+        "Welcoming spaces for youth",
+        "Encouraging meaningful conversations",
+        "Activities that strengthen faith and community"
+      ]
+
+    },
+
+    worship: {
+
+      eyebrow: "PLATFORM 02",
+
+      title: "Meaningful Worship & Liturgy",
+
+      text:
+        "I want to help young people understand that worship is not simply something we attend, but something we actively participate in.",
+
+      list: [
+        "Encourage active participation",
+        "Help explain the meaning behind liturgical celebrations",
+        "Support youth involvement in worship",
+        "Make liturgical activities more meaningful"
+      ]
+
+    }
+
+  };
+
+
+  platforms.forEach(platform => {
+
+    platform.addEventListener("click", () => {
+
+      const type = platform.dataset.platform;
+      const data = platformData[type];
+
+      if (!data) return;
+
+      modalEyebrow.textContent = data.eyebrow;
+      modalTitle.textContent = data.title;
+      modalText.textContent = data.text;
+
+      modalList.innerHTML = "";
+
+      data.list.forEach(item => {
+
+        const p = document.createElement("p");
+
+        p.textContent = "• " + item;
+
+        modalList.appendChild(p);
+
+      });
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+
+    });
+
+  });
+
+
+  if (closeModal) {
+
+    closeModal.addEventListener("click", () => {
+
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+
+    });
+
   }
 
-  modal.classList.remove("open");
 
-  modal.setAttribute(
-    "aria-hidden",
-    "true"
-  );
+  if (modal) {
 
-}
+    modal.addEventListener("click", event => {
 
+      if (event.target === modal) {
 
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
 
-if (closeModal) {
+      }
 
-  closeModal.addEventListener(
-    "click",
-    closeTheModal
-  );
+    });
 
-}
+  }
 
 
+  /* =========================
+     SURPRISE BUTTON
+     ========================= */
 
-if (modal) {
+  const surpriseBtn = document.getElementById("surpriseBtn");
+  const toast = document.getElementById("toast");
 
-  modal.addEventListener(
-    "click",
-    (event) => {
+  if (surpriseBtn) {
 
-      if (
-        event.target === modal
-      ) {
+    surpriseBtn.addEventListener("click", () => {
 
-        closeTheModal();
+      if (toast) {
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3500);
+
+      }
+
+    });
+
+  }
+
+
+  /* =========================
+     SECRET CAT
+     ========================= */
+
+  let pressCount = 0;
+
+  document.addEventListener("keydown", event => {
+
+    if (event.key.toLowerCase() === "c") {
+
+      pressCount++;
+
+      if (pressCount >= 3) {
+
+        document.body.classList.toggle("secret-cat");
+
+        pressCount = 0;
 
       }
 
     }
-  );
 
-}
-
+  });
 
 
-document.addEventListener(
-  "keydown",
-  (event) => {
+  /* =========================
+     MOBILE MENU
+     ========================= */
 
-    if (event.key === "Escape") {
+  const menuBtn = document.querySelector(".menu-btn");
+  const nav = document.querySelector(".nav nav");
 
-      closeTheModal();
+  if (menuBtn && nav) {
 
+    menuBtn.addEventListener("click", () => {
+
+      nav.classList.toggle("open");
+
+    });
+
+  }
+
+
+  /* =========================
+     YOUTUBE CAMPAIGN SONG
+     ========================= */
+
+  const musicFrame = document.getElementById("musicFrame");
+  const musicBtn = document.getElementById("musicBtn");
+  const musicStatus = document.getElementById("musicStatus");
+
+  const floatingMusicBtn =
+    document.getElementById("floatingMusicBtn");
+
+  const floatingMusicText =
+    document.getElementById("floatingMusicText");
+
+
+  let musicPlaying = false;
+
+
+  function playSong() {
+
+    if (!musicFrame) return;
+
+    musicFrame.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "playVideo",
+        args: []
+      }),
+      "*"
+    );
+
+    musicPlaying = true;
+
+    if (musicBtn) {
+      musicBtn.textContent = "⏸ Pause Campaign Song";
+    }
+
+    if (musicStatus) {
+      musicStatus.textContent = "Now playing";
+    }
+
+    if (floatingMusicText) {
+      floatingMusicText.textContent = "Pause Song";
     }
 
   }
-);
 
 
+  function pauseSong() {
 
-// ===============================
-// ONE MORE THING
-// ===============================
+    if (!musicFrame) return;
 
-const surpriseBtn =
-  document.getElementById(
-    "surpriseBtn"
-  );
+    musicFrame.contentWindow.postMessage(
+      JSON.stringify({
+        event: "command",
+        func: "pauseVideo",
+        args: []
+      }),
+      "*"
+    );
 
-const toast =
-  document.getElementById("toast");
+    musicPlaying = false;
 
-
-if (surpriseBtn && toast) {
-
-  surpriseBtn.addEventListener(
-    "click",
-    () => {
-
-      toast.textContent =
-        "Thank you for taking the time to know the campaign. 💚";
-
-      toast.classList.add("show");
-
-
-      setTimeout(() => {
-
-        toast.classList.remove("show");
-
-      }, 2800);
-
-    }
-  );
-
-}
-
-
-
-// ===============================
-// SECRET CAT
-// Press C three times
-// ===============================
-
-let catClicks = 0;
-
-
-document.addEventListener(
-  "keydown",
-  (event) => {
-
-    if (
-      event.key.toLowerCase() !== "c"
-    ) {
-
-      return;
-
+    if (musicBtn) {
+      musicBtn.textContent = "▶ Play Campaign Song";
     }
 
+    if (musicStatus) {
+      musicStatus.textContent = "Music for the journey";
+    }
 
-    catClicks++;
-
-
-    if (
-      catClicks >= 3 &&
-      toast
-    ) {
-
-      toast.textContent =
-        "🐈 MEOOOW. Secret cat unlocked.";
-
-      toast.classList.add("show");
-
-
-      setTimeout(() => {
-
-        toast.classList.remove(
-          "show"
-        );
-
-      }, 3000);
-
-
-      catClicks = 0;
-
+    if (floatingMusicText) {
+      floatingMusicText.textContent = "Play Song";
     }
 
   }
-);
 
 
+  function toggleMusic() {
 
-// ===============================
-// MOBILE MENU
-// ===============================
-
-const menuButton =
-  document.querySelector(
-    ".menu-btn"
-  );
-
-const nav =
-  document.querySelector(
-    ".nav nav"
-  );
-
-
-if (menuButton && nav) {
-
-  menuButton.addEventListener(
-    "click",
-    () => {
-
-      nav.classList.toggle(
-        "show"
-      );
-
+    if (musicPlaying) {
+      pauseSong();
+    } else {
+      playSong();
     }
-  );
 
-}
-
-
-
-// ===============================
-// CAMPAIGN SONG
-// ===============================
-//
-// The bottom Campaign Song section
-// was removed.
-//
-// The FIRST PAGE play button stays.
-// The floating play button also stays.
-// ===============================
-
-const musicBtn =
-  document.getElementById(
-    "musicBtn"
-  );
-
-const floatingMusicBtn =
-  document.getElementById(
-    "floatingMusicBtn"
-  );
-
-const floatingMusicText =
-  document.getElementById(
-    "floatingMusicText"
-  );
-
-const musicStatus =
-  document.getElementById(
-    "musicStatus"
-  );
-
-const musicFrame =
-  document.getElementById(
-    "musicFrame"
-  );
-
-
-let musicPlaying = false;
-
-
-function playCampaignSong() {
-
-  if (!musicFrame) {
-    return;
   }
-
-
-  musicFrame.src =
-    "https://www.youtube.com/embed/-oK7SheOEA0?autoplay=1&enablejsapi=1";
-
-
-  musicPlaying = true;
 
 
   if (musicBtn) {
+    musicBtn.addEventListener("click", toggleMusic);
+  }
 
-    musicBtn.textContent =
-      "🎵 Campaign Song Playing";
-
+  if (floatingMusicBtn) {
+    floatingMusicBtn.addEventListener("click", toggleMusic);
   }
 
 
-  if (floatingMusicText) {
+  /* =========================
+     KEYBOARD ESC
+     ========================= */
 
-    floatingMusicText.textContent =
-      "Song Playing";
+  document.addEventListener("keydown", event => {
 
-  }
+    if (event.key === "Escape") {
 
-
-  if (musicStatus) {
-
-    musicStatus.textContent =
-      "Campaign song is playing while you explore.";
-
-  }
-
-}
-
-
-
-if (musicBtn) {
-
-  musicBtn.addEventListener(
-    "click",
-    playCampaignSong
-  );
-
-}
-
-
-if (floatingMusicBtn) {
-
-  floatingMusicBtn.addEventListener(
-    "click",
-    playCampaignSong
-  );
-
-}
-
-
-
-// ===============================
-// SMOOTH SCROLL
-// ===============================
-
-document
-  .querySelectorAll(
-    'a[href^="#"]'
-  )
-  .forEach((link) => {
-
-    link.addEventListener(
-      "click",
-      (event) => {
-
-        const targetId =
-          link.getAttribute("href");
-
-        const target =
-          document.querySelector(
-            targetId
-          );
-
-
-        if (!target) {
-          return;
-        }
-
-
-        event.preventDefault();
-
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-
-
-        if (nav) {
-
-          nav.classList.remove(
-            "show"
-          );
-
-        }
-
+      if (modal) {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
       }
-    );
+
+      if (nav) {
+        nav.classList.remove("open");
+      }
+
+    }
 
   });
+
+});
