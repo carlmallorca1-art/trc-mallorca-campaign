@@ -1,9 +1,3 @@
-```css
-/* =========================================
-   CARL HAIDEN MALLORCA CAMPAIGN
-   COMPLETE REBUILT STYLE
-   ========================================= */
-
 :root {
   --dark: #10251d;
   --dark-2: #17382c;
@@ -43,23 +37,17 @@ button {
   cursor: pointer;
 }
 
-
-/* =========================================
-   NAVIGATION
-   ========================================= */
+/* NAVIGATION */
 
 .nav {
   position: sticky;
   top: 0;
   z-index: 1000;
-
   min-height: 80px;
   padding: 18px 6%;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background: rgba(245, 241, 232, 0.96);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(12px);
@@ -115,10 +103,7 @@ button {
   font-size: 27px;
 }
 
-
-/* =========================================
-   NO-SCROLL PAGE SYSTEM
-   ========================================= */
+/* PAGE TABS */
 
 main > section {
   display: none;
@@ -146,10 +131,7 @@ main > section#home.page-active {
   }
 }
 
-
-/* =========================================
-   HERO / HOME
-   ========================================= */
+/* HERO */
 
 .hero {
   width: 100%;
@@ -157,9 +139,12 @@ main > section#home.page-active {
   align-items: center;
   justify-content: space-between;
   gap: 70px;
-
   background:
-    radial-gradient(circle at 85% 20%, rgba(47, 107, 79, 0.12), transparent 30%),
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(47, 107, 79, 0.12),
+      transparent 30%
+    ),
     var(--cream);
 }
 
@@ -264,10 +249,7 @@ main > section#home.page-active {
   color: var(--green);
 }
 
-
-/* =========================================
-   MUSIC
-   ========================================= */
+/* MUSIC */
 
 .music-player {
   display: flex;
@@ -298,16 +280,6 @@ main > section#home.page-active {
   font-size: 13px;
 }
 
-#musicFrame {
-  position: fixed;
-  width: 1px;
-  height: 1px;
-  left: -100px;
-  bottom: -100px;
-  opacity: 0;
-  pointer-events: none;
-}
-
 .floating-music {
   position: fixed;
   right: 24px;
@@ -319,10 +291,7 @@ main > section#home.page-active {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
-
-/* =========================================
-   GENERAL SECTIONS
-   ========================================= */
+/* GENERAL */
 
 .section {
   padding: 90px 7%;
@@ -335,7 +304,6 @@ main > section#home.page-active {
 
 .section-heading h2,
 .story-grid h2,
-.two-column h2,
 .promise h2 {
   color: var(--dark);
   font-size: clamp(38px, 5vw, 64px);
@@ -351,10 +319,7 @@ main > section#home.page-active {
   font-size: 17px;
 }
 
-
-/* =========================================
-   WHY ME
-   ========================================= */
+/* WHY */
 
 .dark-section {
   background: var(--dark);
@@ -364,7 +329,6 @@ main > section#home.page-active {
 .story-grid {
   width: min(1200px, 100%);
   margin: auto;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
@@ -409,10 +373,7 @@ main > section#home.page-active {
   font-weight: 700;
 }
 
-
-/* =========================================
-   PLATFORMS
-   ========================================= */
+/* PLATFORMS */
 
 .platform-grid {
   display: grid;
@@ -423,13 +384,10 @@ main > section#home.page-active {
 .platform {
   padding: 35px;
   min-height: 280px;
-
   background: white;
   border: 1px solid var(--line);
   border-radius: 20px;
-
   box-shadow: 0 10px 35px rgba(16, 37, 29, 0.05);
-
   cursor: pointer;
   transition: 0.3s ease;
 }
@@ -468,10 +426,7 @@ main > section#home.page-active {
   font-weight: 700;
 }
 
-
-/* =========================================
-   JOURNEY
-   ========================================= */
+/* JOURNEY */
 
 .journey-section {
   background: #f8f5ed;
@@ -486,7 +441,6 @@ main > section#home.page-active {
   display: grid;
   grid-template-columns: 70px 1fr;
   gap: 25px;
-
   padding: 25px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -509,10 +463,7 @@ main > section#home.page-active {
   line-height: 1.7;
 }
 
-
-/* =========================================
-   JOURNEY GALLERY
-   ========================================= */
+/* GALLERY */
 
 .journey-gallery {
   display: grid;
@@ -548,19 +499,14 @@ main > section#home.page-active {
   font-weight: 600;
 }
 
-
-/* =========================================
-   CREDENTIALS
-   ========================================= */
+/* CREDENTIALS */
 
 .credentials {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 70px;
-
   margin-top: 80px;
   padding-top: 60px;
-
   border-top: 1px solid var(--line);
 }
 
@@ -582,50 +528,19 @@ main > section#home.page-active {
   font-weight: 800;
 }
 
-
-/* =========================================
-   BEYOND THE CAMPAIGN
-   ========================================= */
-
-.soft-section {
-  background: var(--green-light);
-}
-
-.two-column {
-  width: min(1150px, 100%);
-  margin: auto;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
-}
-
-.two-column > div:last-child {
-  color: var(--text);
-  line-height: 1.9;
-  font-size: 17px;
-}
-
-.two-column > div:last-child p + p {
-  margin-top: 25px;
-}
-
-
-/* =========================================
-   PROMISE
-   ========================================= */
+/* PROMISE */
 
 .promise {
   min-height: calc(100vh - 80px);
-
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
-
   padding: 70px 7%;
-
   background: var(--dark);
+}
+
+main > section.promise:not(.page-active) {
+  display: none !important;
 }
 
 .promise-box {
@@ -666,28 +581,20 @@ main > section#home.page-active {
   color: #9fbbb0;
 }
 
-
-/* =========================================
-   MODAL
-   ========================================= */
+/* MODAL */
 
 .modal {
   position: fixed;
   inset: 0;
   z-index: 2000;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 25px;
-
   background: rgba(10, 25, 19, 0.7);
-
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-
   transition: 0.25s ease;
 }
 
@@ -702,9 +609,7 @@ main > section#home.page-active {
   width: min(600px, 100%);
   max-height: 85vh;
   overflow-y: auto;
-
   padding: 45px;
-
   background: var(--cream);
   border-radius: 22px;
   box-shadow: var(--shadow);
@@ -714,13 +619,10 @@ main > section#home.page-active {
   position: absolute;
   top: 15px;
   right: 18px;
-
   width: 38px;
   height: 38px;
-
   border: 0;
   border-radius: 50%;
-
   background: var(--green-light);
   color: var(--dark);
   font-size: 25px;
@@ -748,30 +650,21 @@ main > section#home.page-active {
   border-bottom: 1px solid var(--line);
 }
 
-
-/* =========================================
-   TOAST
-   ========================================= */
+/* TOAST */
 
 .toast {
   position: fixed;
   left: 50%;
   bottom: 35px;
   z-index: 3000;
-
   transform: translate(-50%, 25px);
-
   padding: 15px 22px;
   border-radius: 999px;
-
   background: var(--dark);
   color: white;
-
   font-size: 14px;
-
   opacity: 0;
   visibility: hidden;
-
   transition: 0.3s ease;
 }
 
@@ -781,18 +674,13 @@ main > section#home.page-active {
   transform: translate(-50%, 0);
 }
 
-
-/* =========================================
-   FOOTER
-   ========================================= */
+/* FOOTER */
 
 footer {
   padding: 35px 7%;
-
   display: flex;
   justify-content: space-between;
   gap: 30px;
-
   background: #0a1914;
   color: white;
 }
@@ -817,10 +705,7 @@ footer p {
   color: white;
 }
 
-
-/* =========================================
-   REVEAL ANIMATION
-   ========================================= */
+/* REVEAL */
 
 .reveal {
   opacity: 0;
@@ -837,19 +722,7 @@ footer p {
   transition-delay: 0.15s;
 }
 
-
-/* =========================================
-   SECRET CAT
-   ========================================= */
-
-.secret-cat .logo::after {
-  content: " 🐈";
-}
-
-
-/* =========================================
-   MOBILE
-   ========================================= */
+/* MOBILE */
 
 @media (max-width: 900px) {
 
@@ -870,8 +743,7 @@ footer p {
     font-size: 52px;
   }
 
-  .story-grid,
-  .two-column {
+  .story-grid {
     grid-template-columns: 1fr;
     gap: 45px;
   }
@@ -888,9 +760,7 @@ footer p {
   .journey-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
-
 
 @media (max-width: 700px) {
 
@@ -907,14 +777,11 @@ footer p {
     top: 70px;
     left: 0;
     right: 0;
-
     display: none;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
-
     padding: 10px 5% 20px;
-
     background: var(--cream);
     border-bottom: 1px solid var(--line);
   }
@@ -959,7 +826,6 @@ footer p {
 
   .section-heading h2,
   .story-grid h2,
-  .two-column h2,
   .promise h2 {
     font-size: 42px;
   }
@@ -975,11 +841,6 @@ footer p {
   .timeline-item {
     grid-template-columns: 45px 1fr;
     gap: 15px;
-  }
-
-  .credentials {
-    margin-top: 60px;
-    padding-top: 45px;
   }
 
   .modal-content {
@@ -1002,9 +863,7 @@ footer p {
     right: 15px;
     bottom: 15px;
   }
-
 }
-
 
 @media (max-width: 450px) {
 
@@ -1035,7 +894,6 @@ footer p {
 
   .section-heading h2,
   .story-grid h2,
-  .two-column h2,
   .promise h2 {
     font-size: 36px;
   }
@@ -1043,6 +901,4 @@ footer p {
   .journey-photo img {
     height: 280px;
   }
-
 }
-```
