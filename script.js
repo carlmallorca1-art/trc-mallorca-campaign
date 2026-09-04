@@ -1,12 +1,6 @@
-```javascript
 /* =========================================
    CARL HAIDEN MALLORCA CAMPAIGN
-   FIXED SCRIPT
-   ========================================= */
-
-
-/* =========================================
-   PAGE NAVIGATION
+   FINAL SCRIPT
    ========================================= */
 
 function showPage(targetId) {
@@ -14,61 +8,47 @@ function showPage(targetId) {
   const sections = document.querySelectorAll("main > section");
   const navLinks = document.querySelectorAll(".nav nav a");
 
-  /* Hide all sections */
   sections.forEach(section => {
     section.classList.remove("page-active");
   });
 
-  /* Show selected section */
   const target = document.querySelector(targetId);
 
-  if (target) {
-    target.classList.add("page-active");
+  if (!target) return;
 
-    /* Make content visible */
-    target.querySelectorAll(".reveal").forEach(element => {
-      element.classList.add("visible");
-    });
-  }
+  target.classList.add("page-active");
 
-  /* Update active navigation */
-  navLinks.forEach(link => {
-
-    link.classList.remove("active");
-
-    if (link.getAttribute("href") === targetId) {
-      link.classList.add("active");
-    }
-
+  target.querySelectorAll(".reveal").forEach(element => {
+    element.classList.add("visible");
   });
 
+  navLinks.forEach(link => {
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === targetId
+    );
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: "auto"
+  });
 }
 
-
-/* Make it available to HTML onclick buttons */
 window.showPage = showPage;
 
 
-
-/* =========================================
-   EVERYTHING STARTS AFTER PAGE LOAD
-   ========================================= */
-
 document.addEventListener("DOMContentLoaded", () => {
 
-
-  /* =========================================
-     INITIAL PAGE
-     ========================================= */
-
-  showPage("#home");
-
-
-  /* =========================================
-     NAVIGATION LINKS
-     ========================================= */
+  /* -----------------------------
+     NAVIGATION
+  ----------------------------- */
 
   const navLinks = document.querySelectorAll(".nav nav a");
+  const mobileNav = document.querySelector(".nav nav");
+  const menuBtn = document.getElementById("menuBtn");
+
+  showPage("#home");
 
   navLinks.forEach(link => {
 
@@ -80,81 +60,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showPage(targetId);
 
-      /* Close mobile menu */
-      const nav = document.querySelector(".nav nav");
-
-      if (nav) {
-        nav.classList.remove("open");
+      if (mobileNav) {
+        mobileNav.classList.remove("open");
       }
 
     });
 
   });
 
+  if (menuBtn && mobileNav) {
 
-
-  /* =========================================
-     REVEAL ANIMATIONS
-     ========================================= */
-
-  const revealElements = document.querySelectorAll(".reveal");
-
-  if ("IntersectionObserver" in window) {
-
-    const observer = new IntersectionObserver(
-      entries => {
-
-        entries.forEach(entry => {
-
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-
-        });
-
-      },
-      {
-        threshold: 0.1
-      }
-    );
-
-    revealElements.forEach(element => {
-      observer.observe(element);
-    });
-
-  } else {
-
-    /* Fallback for older browsers */
-
-    revealElements.forEach(element => {
-      element.classList.add("visible");
+    menuBtn.addEventListener("click", () => {
+      mobileNav.classList.toggle("open");
     });
 
   }
 
 
+  /* -----------------------------
+     REVEAL ANIMATIONS
+  ----------------------------- */
 
-  /* =========================================
+  const revealElements = document.querySelectorAll(".reveal");
+
+  revealElements.forEach(element => {
+    if (element.closest("#home")) {
+      element.classList.add("visible");
+    }
+  });
+
+
+  /* -----------------------------
      PLATFORM MODAL
-     ========================================= */
+  ----------------------------- */
 
   const platforms = document.querySelectorAll(".platform");
 
   const modal = document.getElementById("platformModal");
-  const closeModal = document.getElementById("closeModal");
+  const closeModalButton = document.getElementById("closeModal");
 
   const modalEyebrow = document.getElementById("modalEyebrow");
   const modalTitle = document.getElementById("modalTitle");
   const modalText = document.getElementById("modalText");
   const modalList = document.getElementById("modalList");
 
-
   const platformData = {
 
     wellbeing: {
-
       eyebrow: "PLATFORM 01",
-
       title: "Youth Mental & Spiritual Well-Being",
 
       text:
@@ -166,14 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
         "Encouraging meaningful conversations",
         "Activities that strengthen faith and community"
       ]
-
     },
 
-
     worship: {
-
       eyebrow: "PLATFORM 02",
-
       title: "Meaningful Worship & Liturgy",
 
       text:
@@ -185,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Support youth involvement in worship",
         "Make liturgical activities more meaningful"
       ]
-
     }
 
   };
@@ -200,36 +148,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!data || !modal) return;
 
+      modalEyebrow.textContent = data.eyebrow;
+      modalTitle.textContent = data.title;
+      modalText.textContent = data.text;
 
-      if (modalEyebrow) {
-        modalEyebrow.textContent = data.eyebrow;
-      }
+      modalList.innerHTML = "";
 
-      if (modalTitle) {
-        modalTitle.textContent = data.title;
-      }
+      data.list.forEach(item => {
 
-      if (modalText) {
-        modalText.textContent = data.text;
-      }
+        const paragraph = document.createElement("p");
 
+        paragraph.textContent = "• " + item;
 
-      if (modalList) {
+        modalList.appendChild(paragraph);
 
-        modalList.innerHTML = "";
-
-        data.list.forEach(item => {
-
-          const p = document.createElement("p");
-
-          p.textContent = "• " + item;
-
-          modalList.appendChild(p);
-
-        });
-
-      }
-
+      });
 
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
@@ -238,11 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
-
-
-  /* =========================================
-     CLOSE MODAL
-     ========================================= */
 
   function closePlatformModal() {
 
@@ -253,13 +181,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }
 
-
-  if (closeModal) {
-
-    closeModal.addEventListener("click", closePlatformModal);
-
+  if (closeModalButton) {
+    closeModalButton.addEventListener(
+      "click",
+      closePlatformModal
+    );
   }
-
 
   if (modal) {
 
@@ -274,27 +201,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
-  /* =========================================
-     SURPRISE BUTTON
-     ========================================= */
+  /* -----------------------------
+     ONE MORE THING
+  ----------------------------- */
 
   const surpriseBtn = document.getElementById("surpriseBtn");
   const toast = document.getElementById("toast");
 
-
-  if (surpriseBtn) {
+  if (surpriseBtn && toast) {
 
     surpriseBtn.addEventListener("click", () => {
-
-      if (!toast) return;
 
       toast.classList.add("show");
 
       setTimeout(() => {
-
         toast.classList.remove("show");
-
       }, 3500);
 
     });
@@ -302,13 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-
-  /* =========================================
+  /* -----------------------------
      SECRET CAT
-     ========================================= */
+  ----------------------------- */
 
   let pressCount = 0;
-
 
   document.addEventListener("keydown", event => {
 
@@ -329,35 +248,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-
-  /* =========================================
-     MOBILE MENU
-     ========================================= */
-
-  const menuBtn = document.querySelector(".menu-btn");
-  const mobileNav = document.querySelector(".nav nav");
-
-
-  if (menuBtn && mobileNav) {
-
-    menuBtn.addEventListener("click", () => {
-
-      mobileNav.classList.toggle("open");
-
-    });
-
-  }
-
-
-
-  /* =========================================
-     YOUTUBE CAMPAIGN SONG
-     ========================================= */
+  /* -----------------------------
+     MUSIC
+  ----------------------------- */
 
   const musicFrame = document.getElementById("musicFrame");
-
   const musicBtn = document.getElementById("musicBtn");
-
   const musicStatus = document.getElementById("musicStatus");
 
   const floatingMusicBtn =
@@ -366,37 +262,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const floatingMusicText =
     document.getElementById("floatingMusicText");
 
-
   let musicPlaying = false;
 
 
-  function playSong() {
+  function sendYouTubeCommand(command) {
 
-    if (!musicFrame) return;
-
+    if (!musicFrame || !musicFrame.contentWindow) return;
 
     musicFrame.contentWindow.postMessage(
       JSON.stringify({
         event: "command",
-        func: "playVideo",
+        func: command,
         args: []
       }),
       "*"
     );
 
+  }
+
+
+  function playSong() {
+
+    sendYouTubeCommand("playVideo");
 
     musicPlaying = true;
-
 
     if (musicBtn) {
       musicBtn.textContent = "⏸ Pause Campaign Song";
     }
 
-
     if (musicStatus) {
       musicStatus.textContent = "Now playing";
     }
-
 
     if (floatingMusicText) {
       floatingMusicText.textContent = "Pause Song";
@@ -407,31 +304,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function pauseSong() {
 
-    if (!musicFrame) return;
-
-
-    musicFrame.contentWindow.postMessage(
-      JSON.stringify({
-        event: "command",
-        func: "pauseVideo",
-        args: []
-      }),
-      "*"
-    );
-
+    sendYouTubeCommand("pauseVideo");
 
     musicPlaying = false;
-
 
     if (musicBtn) {
       musicBtn.textContent = "▶ Play Campaign Song";
     }
 
-
     if (musicStatus) {
       musicStatus.textContent = "Music for the journey";
     }
-
 
     if (floatingMusicText) {
       floatingMusicText.textContent = "Play Song";
@@ -443,13 +326,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleMusic() {
 
     if (musicPlaying) {
-
       pauseSong();
-
     } else {
-
       playSong();
-
     }
 
   }
@@ -459,16 +338,17 @@ document.addEventListener("DOMContentLoaded", () => {
     musicBtn.addEventListener("click", toggleMusic);
   }
 
-
   if (floatingMusicBtn) {
-    floatingMusicBtn.addEventListener("click", toggleMusic);
+    floatingMusicBtn.addEventListener(
+      "click",
+      toggleMusic
+    );
   }
 
 
-
-  /* =========================================
+  /* -----------------------------
      ESCAPE KEY
-     ========================================= */
+  ----------------------------- */
 
   document.addEventListener("keydown", event => {
 
@@ -485,5 +365,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-```
-
