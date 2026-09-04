@@ -1,62 +1,74 @@
-let showPage;
+```javascript
+/* =========================================
+   CARL HAIDEN MALLORCA CAMPAIGN
+   FIXED SCRIPT
+   ========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+
+/* =========================================
+   PAGE NAVIGATION
+   ========================================= */
+
+function showPage(targetId) {
 
   const sections = document.querySelectorAll("main > section");
   const navLinks = document.querySelectorAll(".nav nav a");
 
-  /* =========================
-     PAGE NAVIGATION
-     ========================= */
+  /* Hide all sections */
+  sections.forEach(section => {
+    section.classList.remove("page-active");
+  });
 
-  showPage = function(targetId) {
+  /* Show selected section */
+  const target = document.querySelector(targetId);
 
-    sections.forEach(section => {
-      section.classList.remove("page-active");
+  if (target) {
+    target.classList.add("page-active");
+
+    /* Make content visible */
+    target.querySelectorAll(".reveal").forEach(element => {
+      element.classList.add("visible");
     });
+  }
 
-    const target = document.querySelector(targetId);
+  /* Update active navigation */
+  navLinks.forEach(link => {
 
-    if (target) {
-      target.classList.add("page-active");
+    link.classList.remove("active");
+
+    if (link.getAttribute("href") === targetId) {
+      link.classList.add("active");
     }
 
-    navLinks.forEach(link => {
-      link.classList.remove("active");
+  });
 
-      if (link.getAttribute("href") === targetId) {
-        link.classList.add("active");
-      }
-    });
-
-    window.scrollTo({
-      top: 0,
-      behavior: "auto"
-    });
-
-    // Re-trigger reveal animations
-    setTimeout(() => {
-
-      const activeSection = document.querySelector(targetId);
-
-      if (activeSection) {
-
-        activeSection
-          .querySelectorAll(".reveal")
-          .forEach(element => {
-            element.classList.add("visible");
-          });
-
-      }
-
-    }, 50);
-
-  };
+}
 
 
-  /* =========================
-     NAVIGATION CLICK
-     ========================= */
+/* Make it available to HTML onclick buttons */
+window.showPage = showPage;
+
+
+
+/* =========================================
+   EVERYTHING STARTS AFTER PAGE LOAD
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+
+  /* =========================================
+     INITIAL PAGE
+     ========================================= */
+
+  showPage("#home");
+
+
+  /* =========================================
+     NAVIGATION LINKS
+     ========================================= */
+
+  const navLinks = document.querySelectorAll(".nav nav a");
 
   navLinks.forEach(link => {
 
@@ -68,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showPage(targetId);
 
+      /* Close mobile menu */
       const nav = document.querySelector(".nav nav");
 
       if (nav) {
@@ -79,44 +92,51 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* =========================
-     INITIAL PAGE
-     ========================= */
 
-  showPage("#home");
-
-
-  /* =========================
-     REVEAL ANIMATION
-     ========================= */
+  /* =========================================
+     REVEAL ANIMATIONS
+     ========================================= */
 
   const revealElements = document.querySelectorAll(".reveal");
 
-  const observer = new IntersectionObserver(
-    entries => {
+  if ("IntersectionObserver" in window) {
 
-      entries.forEach(entry => {
+    const observer = new IntersectionObserver(
+      entries => {
 
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+        entries.forEach(entry => {
 
-      });
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
 
-    },
-    {
-      threshold: 0.1
-    }
-  );
+        });
 
-  revealElements.forEach(element => {
-    observer.observe(element);
-  });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+    revealElements.forEach(element => {
+      observer.observe(element);
+    });
+
+  } else {
+
+    /* Fallback for older browsers */
+
+    revealElements.forEach(element => {
+      element.classList.add("visible");
+    });
+
+  }
 
 
-  /* =========================
+
+  /* =========================================
      PLATFORM MODAL
-     ========================= */
+     ========================================= */
 
   const platforms = document.querySelectorAll(".platform");
 
@@ -149,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     },
 
+
     worship: {
 
       eyebrow: "PLATFORM 02",
@@ -177,23 +198,38 @@ document.addEventListener("DOMContentLoaded", () => {
       const type = platform.dataset.platform;
       const data = platformData[type];
 
-      if (!data) return;
+      if (!data || !modal) return;
 
-      modalEyebrow.textContent = data.eyebrow;
-      modalTitle.textContent = data.title;
-      modalText.textContent = data.text;
 
-      modalList.innerHTML = "";
+      if (modalEyebrow) {
+        modalEyebrow.textContent = data.eyebrow;
+      }
 
-      data.list.forEach(item => {
+      if (modalTitle) {
+        modalTitle.textContent = data.title;
+      }
 
-        const p = document.createElement("p");
+      if (modalText) {
+        modalText.textContent = data.text;
+      }
 
-        p.textContent = "• " + item;
 
-        modalList.appendChild(p);
+      if (modalList) {
 
-      });
+        modalList.innerHTML = "";
+
+        data.list.forEach(item => {
+
+          const p = document.createElement("p");
+
+          p.textContent = "• " + item;
+
+          modalList.appendChild(p);
+
+        });
+
+      }
+
 
       modal.classList.add("open");
       modal.setAttribute("aria-hidden", "false");
@@ -203,14 +239,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+
+  /* =========================================
+     CLOSE MODAL
+     ========================================= */
+
+  function closePlatformModal() {
+
+    if (!modal) return;
+
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+
+  }
+
+
   if (closeModal) {
 
-    closeModal.addEventListener("click", () => {
-
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-
-    });
+    closeModal.addEventListener("click", closePlatformModal);
 
   }
 
@@ -220,10 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.addEventListener("click", event => {
 
       if (event.target === modal) {
-
-        modal.classList.remove("open");
-        modal.setAttribute("aria-hidden", "true");
-
+        closePlatformModal();
       }
 
     });
@@ -231,37 +274,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-  /* =========================
+
+  /* =========================================
      SURPRISE BUTTON
-     ========================= */
+     ========================================= */
 
   const surpriseBtn = document.getElementById("surpriseBtn");
   const toast = document.getElementById("toast");
+
 
   if (surpriseBtn) {
 
     surpriseBtn.addEventListener("click", () => {
 
-      if (toast) {
+      if (!toast) return;
 
-        toast.classList.add("show");
+      toast.classList.add("show");
 
-        setTimeout(() => {
-          toast.classList.remove("show");
-        }, 3500);
+      setTimeout(() => {
 
-      }
+        toast.classList.remove("show");
+
+      }, 3500);
 
     });
 
   }
 
 
-  /* =========================
+
+  /* =========================================
      SECRET CAT
-     ========================= */
+     ========================================= */
 
   let pressCount = 0;
+
 
   document.addEventListener("keydown", event => {
 
@@ -282,30 +329,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  /* =========================
+
+  /* =========================================
      MOBILE MENU
-     ========================= */
+     ========================================= */
 
   const menuBtn = document.querySelector(".menu-btn");
-  const nav = document.querySelector(".nav nav");
+  const mobileNav = document.querySelector(".nav nav");
 
-  if (menuBtn && nav) {
+
+  if (menuBtn && mobileNav) {
 
     menuBtn.addEventListener("click", () => {
 
-      nav.classList.toggle("open");
+      mobileNav.classList.toggle("open");
 
     });
 
   }
 
 
-  /* =========================
+
+  /* =========================================
      YOUTUBE CAMPAIGN SONG
-     ========================= */
+     ========================================= */
 
   const musicFrame = document.getElementById("musicFrame");
+
   const musicBtn = document.getElementById("musicBtn");
+
   const musicStatus = document.getElementById("musicStatus");
 
   const floatingMusicBtn =
@@ -322,6 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!musicFrame) return;
 
+
     musicFrame.contentWindow.postMessage(
       JSON.stringify({
         event: "command",
@@ -331,15 +384,19 @@ document.addEventListener("DOMContentLoaded", () => {
       "*"
     );
 
+
     musicPlaying = true;
+
 
     if (musicBtn) {
       musicBtn.textContent = "⏸ Pause Campaign Song";
     }
 
+
     if (musicStatus) {
       musicStatus.textContent = "Now playing";
     }
+
 
     if (floatingMusicText) {
       floatingMusicText.textContent = "Pause Song";
@@ -352,6 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!musicFrame) return;
 
+
     musicFrame.contentWindow.postMessage(
       JSON.stringify({
         event: "command",
@@ -361,15 +419,19 @@ document.addEventListener("DOMContentLoaded", () => {
       "*"
     );
 
+
     musicPlaying = false;
+
 
     if (musicBtn) {
       musicBtn.textContent = "▶ Play Campaign Song";
     }
 
+
     if (musicStatus) {
       musicStatus.textContent = "Music for the journey";
     }
+
 
     if (floatingMusicText) {
       floatingMusicText.textContent = "Play Song";
@@ -381,9 +443,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function toggleMusic() {
 
     if (musicPlaying) {
+
       pauseSong();
+
     } else {
+
       playSong();
+
     }
 
   }
@@ -393,26 +459,25 @@ document.addEventListener("DOMContentLoaded", () => {
     musicBtn.addEventListener("click", toggleMusic);
   }
 
+
   if (floatingMusicBtn) {
     floatingMusicBtn.addEventListener("click", toggleMusic);
   }
 
 
-  /* =========================
-     KEYBOARD ESC
-     ========================= */
+
+  /* =========================================
+     ESCAPE KEY
+     ========================================= */
 
   document.addEventListener("keydown", event => {
 
     if (event.key === "Escape") {
 
-      if (modal) {
-        modal.classList.remove("open");
-        modal.setAttribute("aria-hidden", "true");
-      }
+      closePlatformModal();
 
-      if (nav) {
-        nav.classList.remove("open");
+      if (mobileNav) {
+        mobileNav.classList.remove("open");
       }
 
     }
@@ -420,3 +485,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+```
+
