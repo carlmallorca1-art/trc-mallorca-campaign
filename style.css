@@ -18,7 +18,8 @@
 }
 
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
 body {
@@ -36,6 +37,7 @@ a {
 button {
   cursor: pointer;
 }
+
 
 /* NAVIGATION */
 
@@ -103,39 +105,21 @@ button {
   font-size: 27px;
 }
 
-/* PAGE TABS */
 
-main > section {
-  display: none;
-  min-height: calc(100vh - 80px);
+/* SECTIONS */
+
+section {
+  scroll-margin-top: 85px;
 }
 
-main > section.page-active {
-  display: block;
-  animation: pageFade 0.35s ease;
-}
-
-main > section#home.page-active {
-  display: flex;
-}
-
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* HERO */
 
 .hero {
+  min-height: calc(100vh - 80px);
   width: 100%;
   padding: 70px 7%;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 70px;
@@ -190,10 +174,12 @@ main > section#home.page-active {
 }
 
 .btn {
+  display: inline-block;
   border: 1px solid var(--green);
   padding: 14px 22px;
   border-radius: 999px;
   font-size: 14px;
+  text-decoration: none;
   transition: 0.25s ease;
 }
 
@@ -217,6 +203,9 @@ main > section#home.page-active {
   background: var(--green-light);
   transform: translateY(-2px);
 }
+
+
+/* HERO PHOTO */
 
 .hero-card {
   width: min(420px, 100%);
@@ -248,6 +237,7 @@ main > section#home.page-active {
 .card-label strong {
   color: var(--green);
 }
+
 
 /* MUSIC */
 
@@ -291,10 +281,12 @@ main > section#home.page-active {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* GENERAL */
+
+/* GENERAL SECTIONS */
 
 .section {
-  padding: 90px 7%;
+  padding: 100px 7%;
+  min-height: 70vh;
 }
 
 .section-heading {
@@ -304,6 +296,7 @@ main > section#home.page-active {
 
 .section-heading h2,
 .story-grid h2,
+.two-column h2,
 .promise h2 {
   color: var(--dark);
   font-size: clamp(38px, 5vw, 64px);
@@ -318,6 +311,7 @@ main > section#home.page-active {
   line-height: 1.8;
   font-size: 17px;
 }
+
 
 /* WHY */
 
@@ -373,6 +367,7 @@ main > section#home.page-active {
   font-weight: 700;
 }
 
+
 /* PLATFORMS */
 
 .platform-grid {
@@ -426,6 +421,7 @@ main > section#home.page-active {
   font-weight: 700;
 }
 
+
 /* JOURNEY */
 
 .journey-section {
@@ -463,6 +459,7 @@ main > section#home.page-active {
   line-height: 1.7;
 }
 
+
 /* GALLERY */
 
 .journey-gallery {
@@ -499,6 +496,7 @@ main > section#home.page-active {
   font-weight: 600;
 }
 
+
 /* CREDENTIALS */
 
 .credentials {
@@ -528,19 +526,42 @@ main > section#home.page-active {
   font-weight: 800;
 }
 
+
+/* BEYOND */
+
+.soft-section {
+  background: var(--green-light);
+}
+
+.two-column {
+  width: min(1150px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.two-column > div:last-child {
+  color: var(--text);
+  line-height: 1.9;
+  font-size: 17px;
+}
+
+.two-column > div:last-child p + p {
+  margin-top: 25px;
+}
+
+
 /* PROMISE */
 
 .promise {
-  min-height: calc(100vh - 80px);
-  display: flex !important;
+  min-height: 90vh;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 70px 7%;
+  padding: 100px 7%;
   background: var(--dark);
-}
-
-main > section.promise:not(.page-active) {
-  display: none !important;
 }
 
 .promise-box {
@@ -578,8 +599,10 @@ main > section.promise:not(.page-active) {
 .promise-signature {
   display: block;
   margin-top: 8px;
+  margin-bottom: 25px;
   color: #9fbbb0;
 }
+
 
 /* MODAL */
 
@@ -650,6 +673,7 @@ main > section.promise:not(.page-active) {
   border-bottom: 1px solid var(--line);
 }
 
+
 /* TOAST */
 
 .toast {
@@ -673,6 +697,7 @@ main > section.promise:not(.page-active) {
   visibility: visible;
   transform: translate(-50%, 0);
 }
+
 
 /* FOOTER */
 
@@ -705,7 +730,8 @@ footer p {
   color: white;
 }
 
-/* REVEAL */
+
+/* ANIMATION */
 
 .reveal {
   opacity: 0;
@@ -718,9 +744,6 @@ footer p {
   transform: translateY(0);
 }
 
-.delay {
-  transition-delay: 0.15s;
-}
 
 /* MOBILE */
 
@@ -743,7 +766,8 @@ footer p {
     font-size: 52px;
   }
 
-  .story-grid {
+  .story-grid,
+  .two-column {
     grid-template-columns: 1fr;
     gap: 45px;
   }
@@ -760,7 +784,9 @@ footer p {
   .journey-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
+
 }
+
 
 @media (max-width: 700px) {
 
@@ -826,6 +852,7 @@ footer p {
 
   .section-heading h2,
   .story-grid h2,
+  .two-column h2,
   .promise h2 {
     font-size: 42px;
   }
@@ -863,7 +890,9 @@ footer p {
     right: 15px;
     bottom: 15px;
   }
+
 }
+
 
 @media (max-width: 450px) {
 
@@ -877,6 +906,7 @@ footer p {
 
   .hero-buttons .btn {
     width: 100%;
+    text-align: center;
   }
 
   .music-player {
@@ -894,6 +924,7 @@ footer p {
 
   .section-heading h2,
   .story-grid h2,
+  .two-column h2,
   .promise h2 {
     font-size: 36px;
   }
@@ -901,4 +932,5 @@ footer p {
   .journey-photo img {
     height: 280px;
   }
+
 }
