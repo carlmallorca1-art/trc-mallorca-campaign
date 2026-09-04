@@ -4,123 +4,273 @@
 
 const revealItems = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-      entry.target.classList.add("active");
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
+if ("IntersectionObserver" in window) {
 
-revealItems.forEach(el => observer.observe(el));
+  const observer = new IntersectionObserver(
+    (entries) => {
+
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+
+          entry.target.classList.add(
+            "visible",
+            "active"
+          );
+
+          observer.unobserve(entry.target);
+        }
+
+      });
+
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  revealItems.forEach((element) => {
+    observer.observe(element);
+  });
+
+} else {
+
+  revealItems.forEach((element) => {
+    element.classList.add("visible", "active");
+  });
+
+}
+
 
 
 // ===============================
 // PLATFORM MODAL
 // ===============================
 
-const modal = document.getElementById("platformModal");
-const closeModal = document.getElementById("closeModal");
-const modalTitle = document.getElementById("modalTitle");
-const modalEyebrow = document.getElementById("modalEyebrow");
-const modalText = document.getElementById("modalText");
-const modalList = document.getElementById("modalList");
+const modal =
+  document.getElementById("platformModal");
+
+const closeModal =
+  document.getElementById("closeModal");
+
+const modalTitle =
+  document.getElementById("modalTitle");
+
+const modalEyebrow =
+  document.getElementById("modalEyebrow");
+
+const modalText =
+  document.getElementById("modalText");
+
+const modalList =
+  document.getElementById("modalList");
+
 
 const platformData = {
+
   wellbeing: {
+
     eyebrow: "PLATFORM 01",
-    title: "Youth Mental & Spiritual Well-Being",
-    text: "I want to create a safe, welcoming, and prayerful space where the youth can freely express their struggles, worries, and experiences without fear of being judged.",
+
+    title:
+      "Youth Mental & Spiritual Well-Being",
+
+    text:
+      "I want to create a safe, welcoming, and prayerful space where the youth can freely express their struggles, worries, and experiences without fear of being judged.",
+
     list: [
+
       "Taizé Prayer — a peaceful time of prayer, silence, reflection, and songs.",
-      "Krisma — a space for sharing, reflection, and strengthening faith.",
+
+      "Krisma — a space for sharing, reflection, and strengthening our faith.",
+
       "Small faith-sharing and reflection sessions.",
+
       "Listening and prayer circles."
+
     ]
+
   },
 
+
   worship: {
+
     eyebrow: "PLATFORM 02",
-    title: "Meaningful Worship & Liturgy",
-    text: "I want to help make our worship more meaningful, understandable, and engaging for the youth. It should be something we understand, participate in, and carry into daily life.",
+
+    title:
+      "Meaningful Worship & Liturgy",
+
+    text:
+      "I want to help make our worship more meaningful, understandable, and engaging for the youth. It should be something we understand, participate in, and carry into daily life.",
+
     list: [
+
       "Help the youth understand the meaning behind liturgical celebrations.",
+
       "Provide moments for reflection before or after worship.",
+
       "Give more opportunities for the youth to serve.",
+
       "Make celebrations more welcoming and meaningful."
+
     ]
+
   }
+
 };
 
-document.querySelectorAll(".platform").forEach(card => {
-  card.addEventListener("click", () => {
 
-    const data = platformData[card.dataset.platform];
 
-    if (!data || !modal) return;
+document
+  .querySelectorAll(".platform")
+  .forEach((card) => {
 
-    modalEyebrow.textContent = data.eyebrow;
-    modalTitle.textContent = data.title;
-    modalText.textContent = data.text;
+    card.addEventListener("click", () => {
 
-    modalList.innerHTML =
-      "<ul>" +
-      data.list.map(item => `<li>${item}</li>`).join("") +
-      "</ul>";
+      const data =
+        platformData[
+          card.dataset.platform
+        ];
 
-    modal.classList.add("open");
-    modal.setAttribute("aria-hidden", "false");
+      if (!data || !modal) {
+        return;
+      }
+
+
+      modalEyebrow.textContent =
+        data.eyebrow;
+
+      modalTitle.textContent =
+        data.title;
+
+      modalText.textContent =
+        data.text;
+
+
+      modalList.innerHTML =
+        "<ul>" +
+        data.list
+          .map(
+            (item) =>
+              `<li>${item}</li>`
+          )
+          .join("") +
+        "</ul>";
+
+
+      modal.classList.add("open");
+
+      modal.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+    });
+
   });
-});
+
+
 
 function closeTheModal() {
-  if (!modal) return;
+
+  if (!modal) {
+    return;
+  }
 
   modal.classList.remove("open");
-  modal.setAttribute("aria-hidden", "true");
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
 }
+
+
 
 if (closeModal) {
-  closeModal.addEventListener("click", closeTheModal);
+
+  closeModal.addEventListener(
+    "click",
+    closeTheModal
+  );
+
 }
+
+
 
 if (modal) {
-  modal.addEventListener("click", e => {
-    if (e.target === modal) {
-      closeTheModal();
+
+  modal.addEventListener(
+    "click",
+    (event) => {
+
+      if (
+        event.target === modal
+      ) {
+
+        closeTheModal();
+
+      }
+
     }
-  });
+  );
+
 }
 
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
-    closeTheModal();
+
+
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (event.key === "Escape") {
+
+      closeTheModal();
+
+    }
+
   }
-});
+);
+
 
 
 // ===============================
-// SURPRISE BUTTON
+// ONE MORE THING
 // ===============================
 
-const surpriseBtn = document.getElementById("surpriseBtn");
-const toast = document.getElementById("toast");
+const surpriseBtn =
+  document.getElementById(
+    "surpriseBtn"
+  );
+
+const toast =
+  document.getElementById("toast");
+
 
 if (surpriseBtn && toast) {
-  surpriseBtn.addEventListener("click", () => {
 
-    toast.textContent =
-      "Thank you for taking the time to know the campaign. 💚";
+  surpriseBtn.addEventListener(
+    "click",
+    () => {
 
-    toast.classList.add("show");
+      toast.textContent =
+        "Thank you for taking the time to know the campaign. 💚";
 
-    setTimeout(() => {
-      toast.classList.remove("show");
-    }, 2800);
-  });
+      toast.classList.add("show");
+
+
+      setTimeout(() => {
+
+        toast.classList.remove("show");
+
+      }, 2800);
+
+    }
+  );
+
 }
+
 
 
 // ===============================
@@ -130,112 +280,232 @@ if (surpriseBtn && toast) {
 
 let catClicks = 0;
 
-document.addEventListener("keydown", e => {
 
-  if (e.key.toLowerCase() === "c") {
+document.addEventListener(
+  "keydown",
+  (event) => {
+
+    if (
+      event.key.toLowerCase() !== "c"
+    ) {
+
+      return;
+
+    }
+
 
     catClicks++;
 
-    if (catClicks >= 3 && toast) {
 
-      toast.textContent = "🐈 MEOOOW. Secret cat unlocked.";
+    if (
+      catClicks >= 3 &&
+      toast
+    ) {
+
+      toast.textContent =
+        "🐈 MEOOOW. Secret cat unlocked.";
 
       toast.classList.add("show");
 
+
       setTimeout(() => {
-        toast.classList.remove("show");
+
+        toast.classList.remove(
+          "show"
+        );
+
       }, 3000);
 
+
       catClicks = 0;
+
     }
+
   }
-});
+);
+
 
 
 // ===============================
 // MOBILE MENU
 // ===============================
 
-const menuButton = document.querySelector(".menu-btn");
-const nav = document.querySelector(".nav nav");
+const menuButton =
+  document.querySelector(
+    ".menu-btn"
+  );
+
+const nav =
+  document.querySelector(
+    ".nav nav"
+  );
+
 
 if (menuButton && nav) {
 
-  menuButton.addEventListener("click", () => {
+  menuButton.addEventListener(
+    "click",
+    () => {
 
-    nav.classList.toggle("show");
+      nav.classList.toggle(
+        "show"
+      );
 
-  });
+    }
+  );
+
 }
+
 
 
 // ===============================
 // CAMPAIGN SONG
 // ===============================
+//
+// The bottom Campaign Song section
+// was removed.
+//
+// The FIRST PAGE play button stays.
+// The floating play button also stays.
+// ===============================
 
-const musicBtn = document.getElementById("musicBtn");
-const floatingMusicBtn = document.getElementById("floatingMusicBtn");
-const floatingMusicText = document.getElementById("floatingMusicText");
-const musicStatus = document.getElementById("musicStatus");
-const musicFrame = document.getElementById("musicFrame");
+const musicBtn =
+  document.getElementById(
+    "musicBtn"
+  );
+
+const floatingMusicBtn =
+  document.getElementById(
+    "floatingMusicBtn"
+  );
+
+const floatingMusicText =
+  document.getElementById(
+    "floatingMusicText"
+  );
+
+const musicStatus =
+  document.getElementById(
+    "musicStatus"
+  );
+
+const musicFrame =
+  document.getElementById(
+    "musicFrame"
+  );
+
 
 let musicPlaying = false;
 
+
 function playCampaignSong() {
 
-  if (!musicFrame) return;
+  if (!musicFrame) {
+    return;
+  }
+
 
   musicFrame.src =
     "https://www.youtube.com/embed/-oK7SheOEA0?autoplay=1&enablejsapi=1";
 
+
   musicPlaying = true;
 
+
   if (musicBtn) {
-    musicBtn.textContent = "🎵 Campaign Song Playing";
+
+    musicBtn.textContent =
+      "🎵 Campaign Song Playing";
+
   }
+
 
   if (floatingMusicText) {
-    floatingMusicText.textContent = "Song Playing";
+
+    floatingMusicText.textContent =
+      "Song Playing";
+
   }
+
 
   if (musicStatus) {
+
     musicStatus.textContent =
       "Campaign song is playing while you explore.";
+
   }
+
 }
+
+
 
 if (musicBtn) {
-  musicBtn.addEventListener("click", playCampaignSong);
+
+  musicBtn.addEventListener(
+    "click",
+    playCampaignSong
+  );
+
 }
+
 
 if (floatingMusicBtn) {
-  floatingMusicBtn.addEventListener("click", playCampaignSong);
+
+  floatingMusicBtn.addEventListener(
+    "click",
+    playCampaignSong
+  );
+
 }
 
 
+
 // ===============================
-// SMOOTH SCROLL FOR NAV LINKS
+// SMOOTH SCROLL
 // ===============================
 
-document.querySelectorAll('a[href^="#"]').forEach(link => {
+document
+  .querySelectorAll(
+    'a[href^="#"]'
+  )
+  .forEach((link) => {
 
-  link.addEventListener("click", e => {
+    link.addEventListener(
+      "click",
+      (event) => {
 
-    const targetId = link.getAttribute("href");
-    const target = document.querySelector(targetId);
+        const targetId =
+          link.getAttribute("href");
 
-    if (!target) return;
+        const target =
+          document.querySelector(
+            targetId
+          );
 
-    e.preventDefault();
 
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+        if (!target) {
+          return;
+        }
 
-    // Close mobile menu after clicking
-    if (nav) {
-      nav.classList.remove("show");
-    }
+
+        event.preventDefault();
+
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+
+        if (nav) {
+
+          nav.classList.remove(
+            "show"
+          );
+
+        }
+
+      }
+    );
+
   });
-});
